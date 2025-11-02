@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>500 - Server Error</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+    <style>
+        .error-container {
+            text-align: center;
+            padding-top: 50px;
+        }
+        .error-container h1 {
+            font-size: 5em;
+            color: #d9534f;
+            margin: 0;
+        }
+        .error-container p {
+            font-size: 1.5em;
+            color: #555;
+        }
+    </style>
+</head>
+<body>
+    <div class="container error-container">
+        <h1>500</h1>
+        <p>Sorry, something went wrong on our end.</p>
+        <p>We are working to fix it. Please try again later.</p>
+        <p><a href="{{ url_for('home') }}">Go back to the Homepage</a></a
+    </div>
+</body>
+</html>

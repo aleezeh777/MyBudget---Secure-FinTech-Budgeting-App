@@ -1,0 +1,78 @@
+{% extends "base.html" %}
+
+{% block content %}
+    <h2>Dashboard</h2>
+    
+    <h3>Add New Expense</h3>
+    <form method="POST" action="" enctype="multipart/form-data">
+        {{ form.hidden_tag() }} <p>
+            {{ form.amount.label }}<br>
+            {{ form.amount() }}
+            {% for error in form.amount.errors %}
+                <span class="error">[{{ error }}]</span> {% endfor %}
+        </p>
+        <p>
+            {{ form.category.label }}<br>
+            {{ form.category() }}
+            {% for error in form.category.errors %}
+                <span class="error">[{{ error }}]</span> {% endfor %}
+        </p>
+        <p>
+            {{ form.notes.label }}<br>
+            {{ form.notes() }}
+            {% for error in form.notes.errors %}
+                <span class="error">[{{ error }}]</span> {% endfor %}
+        </p>
+        <p>
+            {{ form.receipt.label }}<br>
+            {{ form.receipt() }}
+            {% for error in form.receipt.errors %}
+                <span class="error">[{{ error }}]</span> {% endfor %}
+        </p>
+        <p>{{ form.submit() }}</p>
+    </form>
+
+    <h3>My Expenses</h3>
+    <table>
+        <thead>
+            <tr>
+                <th>Amount</th>
+                <th>Category</th>
+                <th>Notes </th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for expense in expenses %}
+            <tr>
+                <td>${{ "%.2f"|format(expense.amount) }}</td>
+                <td>{{ expense.category }}</td>
+                <td>{{ expense.notes }}</td> </tr>
+            {% else %}
+            <tr>
+                <td colspan="3">You have not added any expenses yet.</td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+
+    <h3>Activity Log</h3>
+    <table>
+        <thead>
+            <tr>
+                <th>Timestamp</th>
+                <th>Action</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for log in logs %}
+            <tr>
+                <td>{{ log.timestamp.strftime('%Y-%m-%d %H:%M:%S') }}</td>
+                <td>{{ log.action }}</td> </tr>
+            {% else %}
+            <tr>
+                <td colspan="2">No activity recorded yet.</td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+{% endblock %}
